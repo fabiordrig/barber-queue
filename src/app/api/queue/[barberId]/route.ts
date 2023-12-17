@@ -11,13 +11,17 @@ export const GET = async (
     barberId: string;
   }>,
 ) => {
-  const { data, error } = await supabase.from("queue").select("*").eq("barber_id", params.barberId);
+  const { data, error } = await supabase
+    .from("queue")
+    .select("*")
+    .eq("barber_id", params.barberId)
+    .single();
 
   if (error) {
     return new Response(error.message, { status: 500 });
   }
 
-  return Response.json(convertToCamelCase<Queue[]>(data));
+  return Response.json(convertToCamelCase<Queue>(data));
 };
 
 export const PATCH = async (

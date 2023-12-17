@@ -5,6 +5,7 @@ import { FC, useState } from "react";
 import { createBarber } from "../service";
 import { Barber, NewBarber } from "../types";
 
+// eslint-disable-next-line no-unused-vars
 const CreateQueueScreen: FC<{ setBarber: (_: Barber) => void }> = ({ setBarber }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ const CreateQueueScreen: FC<{ setBarber: (_: Barber) => void }> = ({ setBarber }
     try {
       const barber = await createBarber(values);
       setBarber(barber);
+      message.success("Fila criada com sucesso!");
     } catch (_) {
       message.error("Por favor, preencha todos os campos corretamente.");
     } finally {
