@@ -1,24 +1,26 @@
 "use client";
 
-import { Card, ConfigProvider, theme } from "antd";
-import Image from "next/image";
+import { Card, Flex } from "antd";
+import { FC, useState } from "react";
+import CreateBarberForm from "./components/CreateBarberForm";
+import { Barber } from "./types";
 
-export default function Home() {
+const CreateQueueScreen: FC = () => {
+  const [barber, setBarber] = useState<Barber>(); // [1
+
   return (
-    <main>
-      <ConfigProvider
-        theme={{
-          algorithm: theme.darkAlgorithm,
-          token: {
-            colorBgBase: "dark",
-            colorBgLayout: "dark",
-          },
+    <Flex gap="large" style-={{ height: "100%" }} justify="space-around" align="flex-end">
+      <Card
+        style={{
+          width: "80%",
+          marginTop: "50%",
         }}
+        title="Criar Fila"
       >
-        <Card title="Test" extra={<a>more</a>}>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </Card>
-      </ConfigProvider>
-    </main>
+        <CreateBarberForm setBarber={setBarber} />
+      </Card>
+    </Flex>
   );
-}
+};
+
+export default CreateQueueScreen;
